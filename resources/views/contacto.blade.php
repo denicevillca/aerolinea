@@ -1,5 +1,6 @@
-@extends('home')
+@extends('layouts.app')
 
-@section('seccion')
-<h1>Contacto</h1>
-@endsection
+<div class="container ">
+
+<h1  >CONTACTO</h1>	
+</div>
