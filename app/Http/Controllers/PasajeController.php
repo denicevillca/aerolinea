@@ -15,6 +15,9 @@ class PasajeController extends Controller
     public function index()
     {
         //
+        $datos['pasaje']=Pasaje::paginate(4);
+        return view('pasaje.index',$datos);
+
     }
 
     /**
@@ -24,6 +27,7 @@ class PasajeController extends Controller
      */
     public function create()
     {
+        return view('pasaje.create');
         //
     }
 
@@ -35,7 +39,11 @@ class PasajeController extends Controller
      */
     public function store(Request $request)
     {
+      
         //
+         $datosPasaje=request()->except('_token');
+            Pasaje::insert($datosPasaje);
+            return redirect('pasaje')->with('Mensaje','Pasaje incorporado');
     }
 
     /**
@@ -55,8 +63,13 @@ class PasajeController extends Controller
      * @param  \App\Pasaje  $pasaje
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pasaje $pasaje)
+    public function edit($id)
     {
+      
+        $pasajes=Pasaje::findOrFail($id);
+
+        return view('pasaje.edit',compact('pasajes'));
+
         //
     }
 
@@ -67,9 +80,17 @@ class PasajeController extends Controller
      * @param  \App\Pasaje  $pasaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pasaje $pasaje)
+    public function update(Request $request,$id)
     {
         //
+         $datosPasaje=request()->except(['_token','_method']);
+        Pasaje::where('id','=',$id)->update($datosPasaje);
+
+        $pasajes=Pasaje::findOrFail($id);
+
+        
+ return redirect('pasaje')->with('Mensaje','Pasajes actualizados');
+    
     }
 
     /**
@@ -78,8 +99,13 @@ class PasajeController extends Controller
      * @param  \App\Pasaje  $pasaje
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasaje $pasaje)
+    public function destroy($id)
     {
         //
+          Pasaje::destroy($id);
+
+        //return redirect('cliente');
+         return redirect('pasaje')->with('Mensaje','pasaje Borrado');
+    
     }
 }

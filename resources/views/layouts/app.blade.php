@@ -35,7 +35,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                                <a class="nav-link" href="{{ route('cliente.index') }}">{{ __('CLIENTE') }}</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pasaje.index') }}">{{ __('PASAJE') }}</a>
 
+                            </li>
+                     <li class="nav-item">
+                                <a class="nav-link" href="{{ route('vuelo.index') }}">{{ __('VUELO') }}</a>
+                            </li>
+            
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->

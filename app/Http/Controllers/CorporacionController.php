@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Vuelo;
+use App\corporacion;
 use Illuminate\Http\Request;
 
-class VueloController extends Controller
+class CorporacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,8 @@ class VueloController extends Controller
      */
     public function index()
     {
-        //
-        $datos['vuelo']=Vuelo::paginate(4);
-        return view('vuelo.index',$datos);
-
+        $datos['corporacion']=Corporacion::Paginate(4);
+        return view('compañia.index',$datos);
     }
 
     /**
@@ -27,8 +25,8 @@ class VueloController extends Controller
      */
     public function create()
     {
-       return view('vuelo.create');
-        //
+         return view('compañia.create');
+   
     }
 
     /**
@@ -39,20 +37,21 @@ class VueloController extends Controller
      */
     public function store(Request $request)
     {
-      
-       $datosVuelo=request()->except('_token');
-            Vuelo::insert($datosVuelo);
-            return redirect('vuelo')->with('Mensaje','VUELO incorporado');
-   //
+        $datosCorporacion=request()->except('_token');
+        Corporacion::insert($datosCorporacion);
+        return redirect('corporacion')->with('Mensaje','Compañia agregada con exito');
+
+
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vuelo  $vuelo
+     * @param  \App\corporacion  $corporacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Vuelo $vuelo)
+    public function show(corporacion $corporacion)
     {
         //
     }
@@ -60,14 +59,15 @@ class VueloController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vuelo  $vuelo
+     * @param  \App\corporacion  $corporacion
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $vuelos=Vuelo::findOrFail($id);
+       
+        $cor=Corporacion::findOrFail($id);
 
-        return view('vuelo.edit',compact('vuelos'));
+        return view('compañia.edit',compact('cor'));
  //
     }
 
@@ -75,35 +75,33 @@ class VueloController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vuelo  $vuelo
+     * @param  \App\corporacion  $corporacion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
-         $datosVuelo=request()->except(['_token','_method']);
-        Vuelo::where('id','=',$id)->update($datosVuelo);
+       
+        $datosCorporacion=request()->except(['_token','_method']);
+        Corporacion::where('id','=',$id)->update($datosCorporacion);
 
-        $vuelos=Vuelo::findOrFail($id);
+        $cor=Corporacion::findOrFail($id);
 
         
- return redirect('vuelo')->with('Mensaje','VUELOS actualizados');
-    
-        //
+ return redirect('corporacion')->with('Mensaje','Compañia ACTUALIZADO');
+    //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vuelo  $vuelo
+     * @param  \App\corporacion  $corporacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
-         Vuelo::destroy($id);
+           Corporacion::destroy($id);
 
         //return redirect('cliente');
-         return redirect('vuelo')->with('Mensaje','DATO DE VUELO Borrado');
-    
-        //
+         return redirect('corporacion')->with('Mensaje',' Borrado exitoso');//
     }
 }

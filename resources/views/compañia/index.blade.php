@@ -3,11 +3,14 @@
 	@section('content')
 
 <div class="container">
-   <a href="{{url('cliente/create')}}" class="btn btn-success">Agregar_cliente</a>
+<h1> si se pudo?</h1>
+</div>
+
+<div class="container">
+   <a href="{{url('corporacion/create')}}" class="btn btn-success">Agregar_compañia</a>
 
 </div>
    <br>
-
 @if(Session::has('Mensaje'))
 <div class="alert alert-success">
   {{Session::get('Mensaje')}}
@@ -21,28 +24,25 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Edad</th>
+      <th scope="col">Direccion</th>
       <th scope="col">Telefono</th>
-      <th scope="col">DNI</th>
       <th scope="col">Acciones</th>
 
     </tr>
   </thead>
   <tbody>
-  	@foreach($cliente as $clientes)
+  	@foreach($corporacion as $cor)
     <tr>
      
-      <th scope="row">{{$clientes->id}}</th>
+      <th scope="row">{{$cor->id}}</th>
 
-      <td>{{$clientes->nombre}}</td>
-      <td>{{$clientes->edad}}</td>
-      <td>{{$clientes->telefono}}</td>
-      <td>{{$clientes->dni}}</td>
-      
+      <td>{{$cor->nombre}}</td>
+      <td>{{$cor->direccion}}</td>
+      <td>{{$cor->telefono}}</td>
       <td>
-      	<a class="btn btn-info" href="{{url('/cliente/'.$clientes->id.'/edit')}}">EDITAR</a>
+      	<a class="btn btn-info" href="{{url('/corporacion/'.$cor->id.'/edit')}}">EDITAR</a>
 
-      	<form method="post" action="{{url('/cliente/'.$clientes->id)}}" style="display:inline">
+      	<form method="post" action="{{url('/corporacion/'.$cor->id)}}" style="display:inline">
 
       	{{csrf_field()}}
       		{{method_field('DELETE')}}
@@ -56,8 +56,11 @@
     @endforeach
 </tbody>
 </table>
-{{ $cliente->links()}}
+{{ $corporacion->links()}}
     </div>
+
+
+
 @endsection
 
 	

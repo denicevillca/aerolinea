@@ -14,7 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $datos['cliente']=Cliente::paginate(5);
+        $datos['cliente']=Cliente::paginate(4);
         return view('cliente.index',$datos);
 
     }
@@ -40,7 +40,8 @@ class ClienteController extends Controller
         //
         $datosCliente=request()->except('_token');
             Cliente::insert($datosCliente);
-
+            return redirect('cliente')->with('Mensaje','Cliente agregado');
+    
     }
 
     /**
@@ -82,8 +83,9 @@ class ClienteController extends Controller
 
         $clientes=Cliente::findOrFail($id);
 
-        return view('cliente.edit',compact('clientes'));
-
+        
+ return redirect('cliente')->with('Mensaje','Cliente ACTUALIZADO');
+    
     }
 
     /**
@@ -97,6 +99,8 @@ class ClienteController extends Controller
         //
         Cliente::destroy($id);
 
-        return redirect('cliente');
+        //return redirect('cliente');
+         return redirect('cliente')->with('Mensaje','Cliente Borrado');
+    
     }
 }

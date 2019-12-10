@@ -3,7 +3,7 @@
 	@section('content')
 
 <div class="container">
-   <a href="{{url('cliente/create')}}" class="btn btn-success">Agregar_cliente</a>
+   <a href="{{url('vuelo/create')}}" class="btn btn-success">Agregar_Vuelo</a>
 
 </div>
    <br>
@@ -20,29 +20,25 @@
 <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Edad</th>
-      <th scope="col">Telefono</th>
-      <th scope="col">DNI</th>
+      <th scope="col">Capacidad</th>
+      <th scope="col">numero_vuelo</th>
       <th scope="col">Acciones</th>
 
     </tr>
   </thead>
   <tbody>
-  	@foreach($cliente as $clientes)
+  	@foreach($vuelo as $vuelos)
     <tr>
      
-      <th scope="row">{{$clientes->id}}</th>
+      <th scope="row">{{$vuelos->id}}</th>
 
-      <td>{{$clientes->nombre}}</td>
-      <td>{{$clientes->edad}}</td>
-      <td>{{$clientes->telefono}}</td>
-      <td>{{$clientes->dni}}</td>
+      <td>{{$vuelos->capacidad}}</td>
+      <td>{{$vuelos->numero_vuelo}}</td>
       
       <td>
-      	<a class="btn btn-info" href="{{url('/cliente/'.$clientes->id.'/edit')}}">EDITAR</a>
+      	<a class="btn btn-info" href="{{url('/vuelo/'.$vuelos->id.'/edit')}}">EDITAR</a>
 
-      	<form method="post" action="{{url('/cliente/'.$clientes->id)}}" style="display:inline">
+      	<form method="post" action="{{url('/vuelo/'.$vuelos->id)}}" style="display:inline">
 
       	{{csrf_field()}}
       		{{method_field('DELETE')}}
@@ -56,7 +52,7 @@
     @endforeach
 </tbody>
 </table>
-{{ $cliente->links()}}
+{{ $vuelo->links()}}
     </div>
 @endsection
 
