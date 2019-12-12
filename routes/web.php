@@ -16,3 +16,5 @@ Route::resource('corporacion','CorporacionController');
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('/refresh_captcha','Auth\RegisterController@refreshCaptcha')->name('refresh_captcha');
