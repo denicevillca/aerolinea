@@ -45,6 +45,9 @@
                      <li class="nav-item">
                                 <a class="nav-link" href="{{ route('vuelo.index') }}">{{ __('VUELO') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('corporacion.index') }}">{{ __('COMAÑIA_VUELO') }}</a>
+                            </li>
             
                     
                     </ul>
